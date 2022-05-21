@@ -1,0 +1,15 @@
+table,td,tr{
+    border:1px solid;
+}
+#i1{
+    border:1px black solid;
+    border-style:double solid;
+}
+#i2{
+    border:1px black solid;
+    border-style:double solid;
+}
+/* #i3{
+    border:1px black solid;
+    border-style:double solid;
+} */

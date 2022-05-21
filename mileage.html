@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Mileage Calculator</title>
+<meta name="keywords" content="mileage,calculator">
+<meta charset="UTF-8">
+<meta name="viewport" content="device-width">
+<style>
+h1{
+text-align:center;
+}
+</style>
+<script>
+    function milefunction(){
+        var strt = document.getElementById('ir').value;
+        var end = document.getElementById('fr').value;
+        var litre = document.getElementById('nlt').value;
+        var r1 = parseInt(strt);
+        var r2 = parseInt(end);
+        var r3 = parseInt(litre);
+        document.write("Fuel mileage = "+((r2-r1)/r3));
+    }
+</script>
+</head>
+<body>
+<h1> Mileage Calculator</h1>
+<form target="_self">
+<label>Start reading :</label>
+<input type="text" name="start reading" id="ir"><br><br>
+<label>End reading :</label>
+<input type="text" name="end reading" id="fr"><br><br>
+<label>No.of litres :</label>
+<input type="text" name="no.of litres" id="nlt"><br><br>
+<button type="button" onclick="milefunction();">Submit</button>
+</form>
+</body>
+</html>

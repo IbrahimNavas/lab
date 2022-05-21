@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>MEDICAL FORM</title>
+<meta name="keywords" content="medical,form">
+<meta charset="UTF-8">
+<meta name="viewport" content="device-width">
+<link rel="stylesheet" type="text/css" href="style4.css">
+<script src="validate.js"></script>
+</head>
+<body>
+<form name="myform" onsubmit="return validation() ">
+
+<fieldset>
+<legend>Personal information</legend>
+
+<table >
+<tr>
+   <td>Fisrt Name</td>
+<td>
+   <input id="i1" type="text" name="firstname" placeholder="FirstName">
+</td>
+<td>Gender</td>
+  <td>
+    <input  type="radio" name="gender" value="Female">Female
+    <input  type="radio" name="gender" value="Male">Male
+  </td>
+</tr>
+
+<tr>
+    <td>Last Name</td>
+    <td>
+        <input type="text" name="lastname" placeholder="LastName" >
+    </td>
+    <td>Nationality</td>
+    <td>
+    <select name="nationality">
+        <option  name="Candian" value="Candian">Canadian</option>
+        <option name="Indian" value="Indian">Indian</option>
+        <option name="American" value="American">American</option>
+        <option name="German" value="German">German</option>
+        <option name="Japanese" value="Japanese">Japanese</option>
+    </select>
+    </td>
+</tr>
+
+<tr>
+    <td>Address</td>
+    <td colspan="3">
+        <textarea  name="address" maxlength="300" rows="5" ></textarea> 
+    </td>
+</tr>
+</table>
+</fieldset>
+
+<fieldset>
+    <legend>Medical History</legend>
+    <input type="checkbox" name="smallpox" value="positive">Smallpox
+    <input type="checkbox" name="mumps" value="positive">Mumps
+    <input type="checkbox" name="dizziness" value="positive">Dizziness
+    <input type="checkbox" name="sneezing" value="positive">Sneezing
+</fieldset>
+
+<fieldset>
+    <legend>Current Medication</legend>
+    <label>Are you currently taking any medication ?</label>
+    <input type="radio" name="radio" value="Yes">Yes
+    <input type="radio" name="radio" value="No">No<br>
+
+    <label>If you are currently taking medication,please indicate it in the space below :</label>
+    <br>
+    <textarea maxlength="auto" rows="10" cols="170" name="tarea"></textarea>
+</fieldset>
+<br><br>
+
+<input type="submit" value="Submit">
+<input type="reset" value="Reset">
+</form>
+</body>

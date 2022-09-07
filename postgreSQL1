@@ -1,0 +1,206 @@
+Server [localhost]:
+Database [postgres]:
+Port [5432]:
+Username [postgres]:
+Password for user postgres:
+psql (14.5)
+WARNING: Console code page (437) differs from Windows code page (1252)
+         8-bit characters might not work correctly. See psql reference
+         page "Notes for Windows users" for details.
+Type "help" for help.
+
+postgres=# \l
+                                         List of databases
+   Name    |  Owner   | Encoding |      Collate       |       Ctype        |   Access privileges
+-----------+----------+----------+--------------------+--------------------+-----------------------
+ postgres  | postgres | UTF8     | English_India.1252 | English_India.1252 |
+ template0 | postgres | UTF8     | English_India.1252 | English_India.1252 | =c/postgres          +
+           |          |          |                    |                    | postgres=CTc/postgres
+ template1 | postgres | UTF8     | English_India.1252 | English_India.1252 | =c/postgres          +
+           |          |          |                    |                    | postgres=CTc/postgres
+(3 rows)
+
+
+postgres=# \c
+You are now connected to database "postgres" as user "postgres".
+postgres=# \dt
+          List of relations
+ Schema |   Name   | Type  |  Owner
+--------+----------+-------+----------
+ public | emp      | table | postgres
+ public | students | table | postgres
+(2 rows)
+
+
+postgres=# create table wdcstd(S_no int,car_no int not null,dname varchar(50) not null,nation varchar(25),car varchar(50),points int,primary key (S_no) );
+CREATE TABLE
+postgres=# insert into wdcstd values (1,44,'Lewis Hamilton','GBR','MercedesAMG Petronas',419),(2,5,'Sebastian Vettel','GER','Red Rcaing Renault',397),
+postgres-# (3,33,'Max Verstappen','NLD','Red Bull Racing RBPT',395),(4,7,'Michael Schumacher','GER','Ferrari',387),(5,16,Charles Leclerc','MON','Ferrari',350);
+postgres'# insert into wdcstd values (1,44,'Lewis Hamilton','GBR','MercedesAMG Petronas',419),(2,5,'Sebastian Vettel','GER','Red Rcaing Renault',397),
+postgres'# (3,33,'Max Verstappen','NLD','Red Bull Racing RBPT',395),(4,7,'Michael Schumacher','GER','Ferrari',387),(5,16,Charles Leclerc','MON','Ferrari',350);
+ERROR:  syntax error at or near "Leclerc"
+LINE 2: ...el Schumacher','GER','Ferrari',387),(5,16,Charles Leclerc','...
+                                                             ^
+postgres=# insert into wdcstd values (1,44,'Lewis Hamilton','GBR','MercedesAMG Petronas',419),(2,5,'Sebastian Vettel','GER','Red Rcaing Renault',397),(3,33,'Max Verstappen','NLD','Red Bull Racing RBPT',395),(4,7,'Michael Schumacher','GER','Ferrari',387),(5,16,'Charles Leclerc','MON','Ferrari',350);
+INSERT 0 5
+postgres=# select *from wdcstd;
+ s_no | car_no |       dname        | nation |         car          | points
+------+--------+--------------------+--------+----------------------+--------
+    1 |     44 | Lewis Hamilton     | GBR    | MercedesAMG Petronas |    419
+    2 |      5 | Sebastian Vettel   | GER    | Red Rcaing Renault   |    397
+    3 |     33 | Max Verstappen     | NLD    | Red Bull Racing RBPT |    395
+    4 |      7 | Michael Schumacher | GER    | Ferrari              |    387
+    5 |     16 | Charles Leclerc    | MON    | Ferrari              |    350
+(5 rows)
+
+
+postgres=# alter table wdcstd add column dateofbirth date;
+ALTER TABLE
+postgres=# select *from table wdcstd;
+ERROR:  syntax error at or near "table"
+LINE 1: select *from table wdcstd;
+                     ^
+postgres=# select *from wdcstd;
+ s_no | car_no |       dname        | nation |         car          | points | dateofbirth
+------+--------+--------------------+--------+----------------------+--------+-------------
+    1 |     44 | Lewis Hamilton     | GBR    | MercedesAMG Petronas |    419 |
+    2 |      5 | Sebastian Vettel   | GER    | Red Rcaing Renault   |    397 |
+    3 |     33 | Max Verstappen     | NLD    | Red Bull Racing RBPT |    395 |
+    4 |      7 | Michael Schumacher | GER    | Ferrari              |    387 |
+    5 |     16 | Charles Leclerc    | MON    | Ferrari              |    350 |
+(5 rows)
+
+
+postgres=# alter table wdcstd drop column dateofbirth;
+ALTER TABLE
+postgres=# slect *from wdcstd;
+ERROR:  syntax error at or near "slect"
+LINE 1: slect *from wdcstd;
+        ^
+postgres=# select *from wdcstd;
+ s_no | car_no |       dname        | nation |         car          | points
+------+--------+--------------------+--------+----------------------+--------
+    1 |     44 | Lewis Hamilton     | GBR    | MercedesAMG Petronas |    419
+    2 |      5 | Sebastian Vettel   | GER    | Red Rcaing Renault   |    397
+    3 |     33 | Max Verstappen     | NLD    | Red Bull Racing RBPT |    395
+    4 |      7 | Michael Schumacher | GER    | Ferrari              |    387
+    5 |     16 | Charles Leclerc    | MON    | Ferrari              |    350
+(5 rows)
+
+
+postgres=# alter table wdcstd add column dateofbirth date after dname;
+ERROR:  syntax error at or near "after"
+LINE 1: alter table wdcstd add column dateofbirth date after dname;
+                                                       ^
+postgres=# alter table wdcstd modify column points varchar(10);
+ERROR:  syntax error at or near "modify"
+LINE 1: alter table wdcstd modify column points varchar(10);
+                           ^
+postgres=#  alter table wdcstd alter column points varchar(10);
+ERROR:  syntax error at or near "varchar"
+LINE 1: alter table wdcstd alter column points varchar(10);
+                                               ^
+postgres=#  alter table wdcstd modify points varchar(10);
+ERROR:  syntax error at or near "modify"
+LINE 1: alter table wdcstd modify points varchar(10);
+                           ^
+postgres=#  alter table wdcstd modify column car_no varchar(10);
+ERROR:  syntax error at or near "modify"
+LINE 1: alter table wdcstd modify column car_no varchar(10);
+                           ^
+postgres=#  alter table wdcstd alter column car_no varchar(10);
+ERROR:  syntax error at or near "varchar"
+LINE 1: alter table wdcstd alter column car_no varchar(10);
+                                               ^
+postgres=#  alter table wdcstd alter column car_no  alter table wdcstd alter column car_no varchar(10); alter table wdcstd alter column car_no varchar(10); alter table wdcstd alter column car_no varchar(10); alter table wdcstd alter column car_no varchar(10); alter table wdcstd alter column car_no varchar(10); alter table wdcstd alter column car_no varchar(10); alter table wdcstd alter column car_no varchar(10); alter table wdcstd alter column car_no varchar(10); alter table wdcstd alter column car_no varchar(10);;
+ERROR:  syntax error at or near "alter"
+LINE 1: alter table wdcstd alter column car_no  alter table wdcstd a...
+                                                ^
+ERROR:  syntax error at or near "varchar"
+LINE 1: alter table wdcstd alter column car_no varchar(10);
+                                               ^
+ERROR:  syntax error at or near "varchar"
+LINE 1: alter table wdcstd alter column car_no varchar(10);
+                                               ^
+ERROR:  syntax error at or near "varchar"
+LINE 1: alter table wdcstd alter column car_no varchar(10);
+                                               ^
+ERROR:  syntax error at or near "varchar"
+LINE 1: alter table wdcstd alter column car_no varchar(10);
+                                               ^
+ERROR:  syntax error at or near "varchar"
+LINE 1: alter table wdcstd alter column car_no varchar(10);
+                                               ^
+ERROR:  syntax error at or near "varchar"
+LINE 1: alter table wdcstd alter column car_no varchar(10);
+                                               ^
+ERROR:  syntax error at or near "varchar"
+LINE 1: alter table wdcstd alter column car_no varchar(10);
+                                               ^
+ERROR:  syntax error at or near "varchar"
+LINE 1: alter table wdcstd alter column car_no varchar(10);
+                                               ^
+postgres=# select *from wdcstd;
+ s_no | car_no |       dname        | nation |         car          | points
+------+--------+--------------------+--------+----------------------+--------
+    1 |     44 | Lewis Hamilton     | GBR    | MercedesAMG Petronas |    419
+    2 |      5 | Sebastian Vettel   | GER    | Red Rcaing Renault   |    397
+    3 |     33 | Max Verstappen     | NLD    | Red Bull Racing RBPT |    395
+    4 |      7 | Michael Schumacher | GER    | Ferrari              |    387
+    5 |     16 | Charles Leclerc    | MON    | Ferrari              |    350
+(5 rows)
+
+
+postgres=# update wdcstd set car_no = 47,dname = 'Mick Schumacher' where s_no = 4;
+UPDATE 1
+postgres=# select *from wdcstd;
+ s_no | car_no |      dname       | nation |         car          | points
+------+--------+------------------+--------+----------------------+--------
+    1 |     44 | Lewis Hamilton   | GBR    | MercedesAMG Petronas |    419
+    2 |      5 | Sebastian Vettel | GER    | Red Rcaing Renault   |    397
+    3 |     33 | Max Verstappen   | NLD    | Red Bull Racing RBPT |    395
+    5 |     16 | Charles Leclerc  | MON    | Ferrari              |    350
+    4 |     47 | Mick Schumacher  | GER    | Ferrari              |    387
+(5 rows)
+
+
+postgres=# select car_no,dname,points from wdcstd group by points having points > 349;
+ERROR:  column "wdcstd.car_no" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 1: select car_no,dname,points from wdcstd group by points havin...
+               ^
+postgres=# select car_no,dname,points from wdcstd group by car_no having points > 349;
+ERROR:  column "wdcstd.dname" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 1: select car_no,dname,points from wdcstd group by car_no havin...
+                      ^
+postgres=# select car_no,dname,pointsfrom wdcstd group by (points) having sum(points) > 349;
+ERROR:  column "car_no" does not exist
+LINE 1: select car_no,dname,pointsfrom wdcstd group by (points) havi...
+               ^
+postgres=# select *from wdcstd;
+ s_no | car_no |      dname       | nation |         car          | points
+------+--------+------------------+--------+----------------------+--------
+    1 |     44 | Lewis Hamilton   | GBR    | MercedesAMG Petronas |    419
+    2 |      5 | Sebastian Vettel | GER    | Red Rcaing Renault   |    397
+    3 |     33 | Max Verstappen   | NLD    | Red Bull Racing RBPT |    395
+    5 |     16 | Charles Leclerc  | MON    | Ferrari              |    350
+    4 |     47 | Mick Schumacher  | GER    | Ferrari              |    387
+(5 rows)
+
+
+postgres=# select car_no,dname,points from wdcstd group by (car_no) having sum(points) > 349;
+ERROR:  column "wdcstd.dname" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 1: select car_no,dname,points from wdcstd group by (car_no) hav...
+                      ^
+postgres=# select car_no,dname,points from wdcstd group by (car_no,dname) having sum(points) > 349;
+ERROR:  column "wdcstd.points" must appear in the GROUP BY clause or be used in an aggregate function
+LINE 1: select car_no,dname,points from wdcstd group by (car_no,dnam...
+                            ^
+postgres=# select car_no,dname,points from wdcstd group by (car_no,dname,points) having sum(points) > 349;
+ car_no |      dname       | points
+--------+------------------+--------
+     47 | Mick Schumacher  |    387
+     16 | Charles Leclerc  |    350
+      5 | Sebastian Vettel |    397
+     44 | Lewis Hamilton   |    419
+     33 | Max Verstappen   |    395
+(5 rows)
